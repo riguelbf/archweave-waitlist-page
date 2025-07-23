@@ -369,7 +369,17 @@ export default function App() {
             {t('waitlist.cta.subtitle')}
           </p>
           {!isSubmitted && (
-            <Button size="lg" variant="secondary" className="text-lg px-8">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="text-lg px-8"
+              onClick={() => {
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth"
+                });
+              }}
+            >
               {t('waitlist.cta.button')}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
