@@ -1,14 +1,5 @@
-
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-
-type Language = 'pt' | 'en';
-
-interface LanguageContextType {
-    language: Language;
-    setLanguage: (lang: Language) => void;
-    t: (key: string) => string;
-}
-
+import { jsx as _jsx } from "react/jsx-runtime";
+import { createContext, useContext, useState } from 'react';
 const translations = {
     pt: {
         // Header
@@ -17,7 +8,6 @@ const translations = {
         'header.faq': 'FAQ',
         'header.login': 'Login',
         'header.start_free': 'Começar Grátis',
-
         // Hero
         'hero.badge': 'Powered by RAG + Embeddings',
         'hero.title': 'Centralize o raciocínio',
@@ -29,7 +19,6 @@ const translations = {
         'hero.benefit_1': 'Grátis para começar',
         'hero.benefit_2': 'Sem cartão de crédito',
         'hero.benefit_3': 'Setup em 5 minutos',
-
         // Target audience
         'audience.title': 'Ideal para equipes que documentam pouco',
         'audience.subtitle': 'Plataforma pensada para ambientes distribuídos e squads autônomos que precisam alinhar decisões arquiteturais',
@@ -39,7 +28,6 @@ const translations = {
         'audience.teams_desc': 'Acesse contexto arquitetural rapidamente',
         'audience.leaders': 'Líderes Técnicos',
         'audience.leaders_desc': 'Mantenha alinhamento entre squads',
-
         // Features
         'features.title': 'Features que aceleram decisões arquiteturais',
         'features.subtitle': 'Tudo que você precisa para documentar, buscar e reutilizar conhecimento arquitetural',
@@ -55,7 +43,6 @@ const translations = {
         'features.database.desc': 'Repositório versionado de decisões, problemas e alternativas com tags e relacionamentos.',
         'features.api.title': 'API + Webhooks + SDK',
         'features.api.desc': 'Use como backend de arquitetura para integrações com suas ferramentas existentes.',
-
         // How it works
         'how_it_works.title': 'Como Funciona',
         'how_it_works.subtitle': 'Do problema à decisão em 4 passos simples',
@@ -67,7 +54,6 @@ const translations = {
         'how_it_works.step3.desc': 'Editor colaborativo com templates',
         'how_it_works.step4.title': 'Reutilize Conhecimento',
         'how_it_works.step4.desc': 'Busca semântica para contextos futuros',
-
         // Testimonials
         'testimonials.title': 'O que dizem as equipes',
         'testimonials.quote1': 'Reduzimos 70% dos debates redundantes com decisões versionadas em um só lugar',
@@ -76,7 +62,6 @@ const translations = {
         'testimonials.quote2': 'A busca inteligente nos economiza horas procurando por decisões passadas',
         'testimonials.author2': 'Maria Santos',
         'testimonials.role2': 'Engineering Manager, StartupXYZ',
-
         // Pricing
         'pricing.title': 'Planos para toda equipe',
         'pricing.subtitle': 'Comece grátis e escale conforme sua necessidade',
@@ -108,7 +93,6 @@ const translations = {
         'pricing.enterprise.feature5': 'Suporte dedicado',
         'pricing.enterprise.button': 'Falar com Vendas',
         'pricing.popular': 'Mais Popular',
-
         // FAQ
         'faq.title': 'Perguntas Frequentes',
         'faq.q1': 'Como integro com meu Git?',
@@ -119,13 +103,11 @@ const translations = {
         'faq.a3': 'Exportação em Markdown, PDF e HTML. API para integrações personalizadas com suas ferramentas.',
         'faq.q4': 'O que é RAG e como ele ajuda?',
         'faq.a4': 'RAG (Retrieval-Augmented Generation) combina busca semântica com IA generativa para fornecer respostas contextualizadas baseadas em suas decisões arquiteturais.',
-
         // CTA
         'cta.title': 'Pronto para centralizar suas decisões arquiteturais?',
         'cta.subtitle': 'Junte-se a centenas de arquitetos que já usam ArchWeave para documentar e reutilizar conhecimento técnico.',
         'cta.button_primary': 'Começar Grátis',
         'cta.button_secondary': 'Agendar Demo',
-
         // Footer
         'footer.tagline': 'Centralize o raciocínio arquitetural da sua equipe.',
         'footer.product': 'Produto',
@@ -144,7 +126,6 @@ const translations = {
         'footer.terms': 'Termos',
         'footer.rights': '© 2024 ArchWeave. Todos os direitos reservados.',
         'footer.fixed_cta': 'Testar Demo',
-
         // Documentation specific translations
         'docs.sidebar.introduction': 'Introdução',
         'docs.sidebar.getting_started': 'Primeiros Passos',
@@ -205,7 +186,6 @@ const translations = {
         'docs.cta.subtitle': 'Junte-se a milhares de arquitetos e equipes de engenharia que já usam o ArchWeave para documentar e manter sua arquitetura de software.',
         'docs.cta.start_now': 'Começar Agora',
         'docs.cta.join_waitlist': 'Entrar na Lista',
-
         // DocsApp specific translations
         'docs_app.header.docs': 'Docs',
         'docs_app.header.try_now': 'Experimente Agora',
@@ -262,7 +242,6 @@ const translations = {
         'docs_app.cta.subtitle': 'Junte-se à comunidade de arquitetos e engenheiros usando ArchWeave para transformar seu fluxo de documentação.',
         'docs_app.cta.get_started': 'Começar',
         'docs_app.cta.try_demo': 'Ver Demo',
-
         // Waitlist
         'waitlist.nav.features': 'Features',
         'waitlist.nav.benefits': 'Benefícios',
@@ -331,7 +310,6 @@ const translations = {
         'header.faq': 'FAQ',
         'header.login': 'Login',
         'header.start_free': 'Start Free',
-
         // Hero
         'hero.badge': 'Powered by RAG + Embeddings',
         'hero.title': 'Centralize your team\'s',
@@ -343,7 +321,6 @@ const translations = {
         'hero.benefit_1': 'Free to start',
         'hero.benefit_2': 'No credit card',
         'hero.benefit_3': '5-minute setup',
-
         // Target audience
         'audience.title': 'Ideal for teams that document little',
         'audience.subtitle': 'Platform designed for distributed environments and autonomous squads that need to align architectural decisions',
@@ -353,7 +330,6 @@ const translations = {
         'audience.teams_desc': 'Access architectural context quickly',
         'audience.leaders': 'Technical Leaders',
         'audience.leaders_desc': 'Maintain alignment between squads',
-
         // Features
         'features.title': 'Features that accelerate architectural decisions',
         'features.subtitle': 'Everything you need to document, search and reuse architectural knowledge',
@@ -369,7 +345,6 @@ const translations = {
         'features.database.desc': 'Versioned repository of decisions, problems and alternatives with tags and relationships.',
         'features.api.title': 'API + Webhooks + SDK',
         'features.api.desc': 'Use as architecture backend for integrations with your existing tools.',
-
         // How it works
         'how_it_works.title': 'How It Works',
         'how_it_works.subtitle': 'From problem to decision in 4 simple steps',
@@ -381,7 +356,6 @@ const translations = {
         'how_it_works.step3.desc': 'Collaborative editor with templates',
         'how_it_works.step4.title': 'Reuse Knowledge',
         'how_it_works.step4.desc': 'Semantic search for future contexts',
-
         // Testimonials
         'testimonials.title': 'What teams are saying',
         'testimonials.quote1': 'We reduced 70% of redundant debates with versioned decisions in one place',
@@ -390,7 +364,6 @@ const translations = {
         'testimonials.quote2': 'Smart search saves us hours looking for past decisions',
         'testimonials.author2': 'Maria Santos',
         'testimonials.role2': 'Engineering Manager, StartupXYZ',
-
         // Pricing
         'pricing.title': 'Plans for every team',
         'pricing.subtitle': 'Start free and scale as needed',
@@ -422,7 +395,6 @@ const translations = {
         'pricing.enterprise.feature5': 'Dedicated support',
         'pricing.enterprise.button': 'Contact Sales',
         'pricing.popular': 'Most Popular',
-
         // FAQ
         'faq.title': 'Frequently Asked Questions',
         'faq.q1': 'How do I integrate with my Git?',
@@ -433,13 +405,11 @@ const translations = {
         'faq.a3': 'Export in Markdown, PDF and HTML. API for custom integrations with your tools.',
         'faq.q4': 'What is RAG and how does it help?',
         'faq.a4': 'RAG (Retrieval-Augmented Generation) combines semantic search with generative AI to provide contextualized answers based on your architectural decisions.',
-
         // CTA
         'cta.title': 'Ready to centralize your architectural decisions?',
         'cta.subtitle': 'Join hundreds of architects already using ArchWeave to document and reuse technical knowledge.',
         'cta.button_primary': 'Start Free',
         'cta.button_secondary': 'Schedule Demo',
-
         // Footer
         'footer.tagline': 'Centralize your team\'s architectural reasoning.',
         'footer.product': 'Product',
@@ -458,7 +428,6 @@ const translations = {
         'footer.terms': 'Terms',
         'footer.rights': '© 2024 ArchWeave. All rights reserved.',
         'footer.fixed_cta': 'Test Demo',
-
         // Documentation specific translations
         'docs.sidebar.introduction': 'Introduction',
         'docs.sidebar.getting_started': 'Getting Started',
@@ -519,7 +488,6 @@ const translations = {
         'docs.cta.subtitle': 'Join thousands of architects and engineering teams already using ArchWeave to document and maintain their software architecture.',
         'docs.cta.start_now': 'Start Now',
         'docs.cta.join_waitlist': 'Join Waitlist',
-
         // DocsApp specific translations
         'docs_app.header.docs': 'Docs',
         'docs_app.header.try_now': 'Try Now',
@@ -576,7 +544,6 @@ const translations = {
         'docs_app.cta.subtitle': 'Join the community of architects and engineers using ArchWeave to transform their documentation workflow.',
         'docs_app.cta.get_started': 'Get Started',
         'docs_app.cta.try_demo': 'Try Demo',
-
         // Waitlist
         'waitlist.nav.features': 'Features',
         'waitlist.nav.benefits': 'Benefits',
@@ -639,24 +606,15 @@ const translations = {
         'waitlist.toast.welcome_desc': 'We\'ll notify you when early access is available',
     }
 };
-
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-    const [language, setLanguage] = useState<Language>('pt');
-
-    const t = (key: string): string => {
+const LanguageContext = createContext(undefined);
+export const LanguageProvider = ({ children }) => {
+    const [language, setLanguage] = useState('pt');
+    const t = (key) => {
         // @ts-expect-error TS2322
         return translations[language][key] || key;
     };
-
-    return (
-        <LanguageContext.Provider value={{ language, setLanguage, t }}>
-            {children}
-        </LanguageContext.Provider>
-    );
+    return (_jsx(LanguageContext.Provider, { value: { language, setLanguage, t }, children: children }));
 };
-
 // eslint-disable-next-line react-refresh/only-export-components
 export const useLanguage = () => {
     const context = useContext(LanguageContext);
