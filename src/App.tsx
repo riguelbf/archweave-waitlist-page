@@ -18,25 +18,55 @@ export default function App() {
   const { toast } = useToast();
   const { t } = useLanguage();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!email) {
       toast({
-        title: t('waitlist.toast.email_required'),
-        description: t('waitlist.toast.email_required_desc'),
+        title: t("waitlist.toast.email_required"),
+        description: t("waitlist.toast.email_required_desc"),
         variant: "destructive",
       });
       return;
     }
 
-    console.log("Waitlist submission:", { email, suggestion });
+    try {
+      const response = await fetch("https://formspree.io/f/mwkgrdjq", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          suggestion: suggestion || undefined,
+        }),
+      });
 
-    setIsSubmitted(true);
-    toast({
-      title: t('waitlist.toast.welcome'),
-      description: t('waitlist.toast.welcome_desc'),
-    });
+      if (response.ok) {
+        setIsSubmitted(true);
+        setSuggestion("");
+        toast({
+          title: t("waitlist.toast.welcome"),
+          description: t("waitlist.toast.welcome_desc"),
+        });
+      } else {
+        toast({
+          title: "Erro ao enviar",
+          description: "Tente novamente em instantes.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Erro inesperado",
+        description: "Falha ao se conectar ao serviço.",
+        variant: "destructive",
+      });
+    }
   };
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -291,13 +321,26 @@ export default function App() {
                   <Button
                     className="w-full"
                     variant="outline"
-                    onClick={() => {
-                      if (suggestion.trim()) {
-                        console.log("Suggestion:", suggestion);
+                    onClick={async () => {
+                      try {
+                        const res = await fetch("https://formspree.io/f/xkgzjvlj", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ suggestion }),
+                        });
+
+                        if (!res.ok) throw new Error("Formspree error");
+
                         setSuggestion("");
                         toast({
-                          title: t('waitlist.suggestions.success'),
-                          description: t('waitlist.suggestions.success_desc'),
+                          title: t("waitlist.suggestions.success"),
+                          description: t("waitlist.suggestions.success_desc"),
+                        });
+                      } catch (err) {
+                        toast({
+                          title: t("waitlist.suggestions.error"),
+                          description: t("waitlist.suggestions.error_desc"),
+                          variant: "destructive",
                         });
                       }
                     }}
