@@ -97,7 +97,7 @@ export default function App() {
             <div className="flex items-center space-x-4">
               <LanguageSelector />
               <ThemeToggle />
-              <Button className="hidden md:inline-flex">
+              <Button className="hidden md:inline-flex" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >
                 {t('waitlist.nav.join')}
               </Button>
             </div>
