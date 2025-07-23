@@ -128,6 +128,8 @@ export default function App() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <Input
                     type="email"
+                    name="email"
+                    id="email"
                     placeholder={t('waitlist.email.placeholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -312,6 +314,7 @@ export default function App() {
                     <Label htmlFor="suggestion">{t('waitlist.suggestions.label')}</Label>
                     <Textarea
                       id="suggestion"
+                      name="suggestion"
                       placeholder={t('waitlist.suggestions.placeholder')}
                       value={suggestion}
                       onChange={(e) => setSuggestion(e.target.value)}
