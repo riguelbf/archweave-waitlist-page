@@ -31,7 +31,7 @@ export default function App() {
     }
 
     try {
-      const response = await fetch("https://formspree.io/f/mwkgrdjq", {
+      const response = await fetch("https://formspree.io/f/xwpqlndb", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -335,6 +335,7 @@ export default function App() {
                         if (!res.ok) throw new Error("Formspree error");
 
                         setSuggestion("");
+                        setIsSubmitted(true);
                         toast({
                           title: t("waitlist.suggestions.success"),
                           description: t("waitlist.suggestions.success_desc"),
@@ -396,6 +397,8 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+
     </div>
   );
 }

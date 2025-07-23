@@ -5,11 +5,13 @@ import './App.css'
 import App from './App'
 import { LanguageProvider } from './contexts/LanguageContext'
 import { ThemeProvider } from './components/ThemeProvider'
+import { Toaster } from './components/ui/toaster'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
       <LanguageProvider >
+        <Toaster />
         <App />
       </LanguageProvider>
     </ThemeProvider>
